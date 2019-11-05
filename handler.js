@@ -16,16 +16,14 @@ module.exports.hello = async event => {
     }
   ).promise();
 
-  const appearsToBeBinary = s3Response.ContentType.indexOf('image/') > -1;
-
-  const encoding = appearsToBeBinary ? 'base64' : 'utf8';
-
+  // we just treat everything as a binary media type, rather than trying to decide which
+  // stuff from S3 is which based on `content-type`.
   return {
     statusCode: 200,
     headers: {
       'Content-Type': s3Response.ContentType,
     },
-    isBase64Encoded: appearsToBeBinary,
-    body: new Buffer(s3Response.Body).toString(encoding)
+    isBase64Encoded: true,
+    body: s3Response.Body.toString('base64')
   };
 };

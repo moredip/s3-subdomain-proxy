@@ -24,6 +24,10 @@ provider:
   environment:
     S3_BUCKET: preview.thepete.net
 
+  apiGateway:
+    binaryMediaTypes:
+      - '*/*'
+
 functions:
   hello:
     handler: handler.hello
@@ -31,3 +35,4 @@ functions:
       - http:
           path: /{any+}
           method: get
+          contentHandling: CONVERT_TO_BINARY
