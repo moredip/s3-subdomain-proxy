@@ -8,7 +8,8 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:inspect": "node --inspect node_modules/.bin/jest --runInBand --watch"
   },
   "devDependencies": {
     "jest": "^24.9.0",

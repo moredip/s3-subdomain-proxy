@@ -29,10 +29,13 @@ provider:
       - '*/*'
 
 functions:
-  hello:
-    handler: handler.hello
+  proxy:
+    handler: handler.proxy
     events:
       - http:
           path: /{any+}
           method: get
           contentHandling: CONVERT_TO_BINARY
+      - http:
+          path: /
+          method: get
